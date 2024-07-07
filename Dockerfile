@@ -9,4 +9,4 @@ WORKDIR /code
 COPY req.txt /code/
 RUN pip3 install -r req.txt
 
-COPY ./interview_task /code/
+COPY ./interview_task/ /code/
