@@ -1,20 +1,21 @@
 version: '3'
 
 services:
-  backend:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    env_file: .env
-    ports:
-      - "9000:9000"
-    depends_on:
-      - postgresql
-    volumes:
-      - ./interview_task:/code
-    command: sh start_app.sh
-    networks:
-      - bitpinNet
+  # backend:
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   env_file: .env
+  #   ports:
+  #     - "9000:9000"
+  #   depends_on:
+  #     - postgresql
+  #   volumes:
+  #     - ./interview_task:/code
+  #   command: sh start_app.sh
+  #   networks:
+  #     - bitpinNet
+
 
   postgresql:
     image: postgres:latest
@@ -22,13 +23,19 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
-    networks:
-      - bitpinNet
+      - pgdatabitpin:/var/lib/postgresql/data
+    # networks:
+    #   - bitpinNet
 
-networks:
-  bitpinNet:
-    driver: bridge
+  redis:
+    image: redis
+    container_name: my-redis
+    ports:
+      - "6379:6379"
+
+# networks:
+#   bitpinNet:
+#     driver: bridge
 
 volumes:
-  pgdata:
+  pgdatabitpin:
