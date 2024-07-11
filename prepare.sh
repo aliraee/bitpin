@@ -1,0 +1,1 @@
+xargs -a apt-packages sudo apt install -y
